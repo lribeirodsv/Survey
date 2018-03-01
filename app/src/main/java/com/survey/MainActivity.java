@@ -1,7 +1,12 @@
 package com.survey;
 
+import android.Manifest;
 import android.app.ActionBar;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,11 +19,17 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
+import static android.support.v4.content.ContextCompat.checkSelfPermission;
 
 public class MainActivity extends AppCompatActivity {
 
     //region variables declaration
+    public static final int PERMISSION_REQUEST_CODE = 1;
+
     private Integer    currPesq;
     private Integer    status;
     private boolean    statusbool;
@@ -83,7 +94,54 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton radioButton;
     private CheckBox checkBox;
     private Button finalizar;
-    private String resposta;
+    private String respostaq1;
+    private String respostaq2;
+    private String respostaq31;
+    private String respostaq32;
+    private String respostaq33;
+    private String respostaq41;
+    private String respostaq42;
+    private String respostaq5;
+    private String respostaq61;
+    private String respostaq62;
+    private String respostaq63;
+    private String respostaq64;
+    private String respostaq65;
+    private String respostaq66;
+    private String respostaq67;
+    private String respostaq71;
+    private String respostaq72;
+    private String respostaq73;
+    private String respostaq74;
+    private String respostaq75;
+    private String respostaq76;
+    private String respostaq8;
+    private String respostaq81;
+    private String respostaq82;
+    private String respostaq83;
+    private String respostaq84;
+    private String respostaq85;
+    private String respostaq86;
+    private String respostaq87;
+    private String respostaq9;
+    private String respostaq10;
+    private String respostaq11;
+    private String respostaq12;
+    private String respostaq13;
+    private String respostaq14;
+    private String respostaq15;
+    private String respostaq16;
+    private String respostaq17;
+    private String respostaq18;
+    private String respostaq19;
+    private String respostaq20;
+    private String respostaq21;
+    private String respostaq22;
+    private String respostaq23;
+    private String respostaq24;
+    private String respostaq25;
+    private String respostaq26;
+    private String respostaq27;
 
     //endregion
 
@@ -91,6 +149,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            Log.v("Application control","Permission is granted");
+        else {
+            Log.v("Application control","Permission is not granted");
+            isStoragePermissionGranted();
+        }
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
@@ -180,13 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ1(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq1 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("1");
@@ -197,13 +256,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (q2.getText().toString().trim().length() > 0){
 
-                    resposta = q2.getText().toString();
-
-                    dbHelper.insertQ2(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq2 = q2.getText().toString();
 
                 } else
                     naoResp.add("2");
@@ -214,13 +267,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (q31.getText().toString().trim().length() > 0){
 
-                    resposta = q31.getText().toString();
+                    respostaq31 = q31.getText().toString();
 
-                    dbHelper.insertQ31(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
                 }
 
                 //endregion
@@ -229,13 +277,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (q32.getText().toString().trim().length() > 0){
 
-                    resposta = q32.getText().toString();
+                    respostaq32 = q32.getText().toString();
 
-                    dbHelper.insertQ32(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
                 }
 
 
@@ -248,13 +291,8 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
+                    respostaq33 = radioButton.getText().toString();
 
-                    dbHelper.insertQ33(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
                 }
 
 
@@ -267,13 +305,8 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
+                    respostaq41 = radioButton.getText().toString();
 
-                    dbHelper.insertQ41(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
                 }
 
                 //endregion
@@ -285,18 +318,14 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
+                    respostaq42 = radioButton.getText().toString();
 
-                    dbHelper.insertQ42(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
                 }
 
                 //endregion
 
-                if ((q31.getText().toString().trim().length() == 0 && q32.getText().toString().trim().length() == 0 && q33.getCheckedRadioButtonId() == -1) && (q41.getCheckedRadioButtonId() == -1 && q42.getCheckedRadioButtonId() == -1)) {
+                //region Validação Docente/Discente
+                if ((q31.getText().toString().trim().length() == 0 || q32.getText().toString().trim().length() == 0 || q33.getCheckedRadioButtonId() == -1) && (q41.getCheckedRadioButtonId() == -1 || q42.getCheckedRadioButtonId() == -1)) {
 
                     naoResp.add("3.1");
                     naoResp.add("3.2");
@@ -305,6 +334,7 @@ public class MainActivity extends AppCompatActivity {
                     naoResp.add("4.1");
 
                 }
+                //endregion
 
                 //Conhecimentos Ambientais
                 //region q5
@@ -314,13 +344,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ5(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq5 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("5");
@@ -333,11 +357,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq61 = checkBox.getText().toString();
+
                 }
 
                 status = cb2.getId();
@@ -345,11 +366,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq62 = checkBox.getText().toString();
+
                 }
 
                 status = cb3.getId();
@@ -357,11 +375,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq63 = checkBox.getText().toString();
+
                 }
 
                 status = cb4.getId();
@@ -369,11 +384,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq64 = checkBox.getText().toString();
+
                 }
 
                 status = cb5.getId();
@@ -381,11 +393,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq65 = checkBox.getText().toString();
+
                 }
 
                 status = cb6.getId();
@@ -393,11 +402,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq66 = checkBox.getText().toString();
+
                 }
 
                 status = cb7.getId();
@@ -405,11 +411,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ6(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq67 = checkBox.getText().toString();
+
                 }
 
                 if(!cb1.isChecked() && !cb2.isChecked() && !cb3.isChecked() && !cb4.isChecked() && !cb5.isChecked() && !cb6.isChecked() && !cb7.isChecked())
@@ -423,11 +426,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq71 = checkBox.getText().toString();
+
                 }
 
                 status = cb9.getId();
@@ -435,11 +435,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq72 = checkBox.getText().toString();
+
                 }
 
                 status = cb10.getId();
@@ -447,11 +444,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq73 = checkBox.getText().toString();
+
                 }
 
                 status = cb11.getId();
@@ -459,11 +453,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq74 = checkBox.getText().toString();
+
                 }
 
                 status = cb12.getId();
@@ -471,11 +462,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq75 = checkBox.getText().toString();
+
                 }
 
                 status = cb13.getId();
@@ -483,11 +471,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ7(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq76 = checkBox.getText().toString();
+
                 }
 
                 if(!cb8.isChecked() && !cb9.isChecked() && !cb10.isChecked() && !cb11.isChecked() && !cb12.isChecked() && !cb13.isChecked())
@@ -500,13 +485,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ8(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq8 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("8");
@@ -518,11 +497,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq81 = checkBox.getText().toString();
+
                 }
 
                 status = cb15.getId();
@@ -530,11 +506,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq82 = checkBox.getText().toString();
+
                 }
 
                 status = cb16.getId();
@@ -542,11 +515,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq83 = checkBox.getText().toString();
+
                 }
 
                 status = cb17.getId();
@@ -554,11 +524,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq84 = checkBox.getText().toString();
+
                 }
 
                 status = cb18.getId();
@@ -566,11 +533,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq85 = checkBox.getText().toString();
+
                 }
 
                 status = cb19.getId();
@@ -578,11 +542,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq86 = checkBox.getText().toString();
+
                 }
 
                 status = cb20.getId();
@@ -590,11 +551,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if(checkBox.isChecked()){
 
-                    dbHelper.insertQ8a(
-                            currPesq,
-                            checkBox.getText().toString(),
-                            sqLiteDatabase
-                    );
+                    respostaq87 = checkBox.getText().toString();
+
                 }
 
                 RadioButton rb1;
@@ -614,13 +572,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ9(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq9 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("9");
@@ -634,13 +586,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ10(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq10 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("10");
@@ -654,13 +600,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ11(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq11 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("11");
@@ -674,13 +614,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ12(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq12 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("12");
@@ -694,13 +628,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ13(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq13 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("13");
@@ -714,13 +642,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ14(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq14 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("14");
@@ -735,13 +657,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ15(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq15 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("15");
@@ -755,13 +671,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ16(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq16 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("16");
@@ -775,13 +685,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ17(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq17 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("17");
@@ -795,13 +699,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ18(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq18 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("18");
@@ -815,13 +713,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ19(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq19 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("19");
@@ -835,13 +727,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ20(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq20 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("20");
@@ -855,13 +741,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ21(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq21 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("21");
@@ -875,13 +755,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ22(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq22 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("22");
@@ -895,13 +769,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ23(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq23 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("23");
@@ -915,13 +783,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ24(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq24 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("24");
@@ -935,13 +797,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ25(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq25 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("25");
@@ -955,13 +811,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ26(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq26 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("26");
@@ -975,13 +825,7 @@ public class MainActivity extends AppCompatActivity {
                 if(status != -1) {
 
                     radioButton = (RadioButton) findViewById(status);
-                    resposta = radioButton.getText().toString();
-
-                    dbHelper.insertQ27(
-                            currPesq,
-                            resposta,
-                            sqLiteDatabase
-                    );
+                    respostaq27 = radioButton.getText().toString();
 
                 } else
                     naoResp.add("27");
@@ -989,6 +833,59 @@ public class MainActivity extends AppCompatActivity {
                 //endregion
 
                 if(naoResp.isEmpty()) {
+
+                    //region inserts
+                    dbHelper.insertQ1 (currPesq,respostaq1 ,sqLiteDatabase);
+                    dbHelper.insertQ2 (currPesq,respostaq2 ,sqLiteDatabase);
+                    dbHelper.insertQ31(currPesq,respostaq31,sqLiteDatabase);
+                    dbHelper.insertQ32(currPesq,respostaq32,sqLiteDatabase);
+                    dbHelper.insertQ33(currPesq,respostaq33,sqLiteDatabase);
+                    dbHelper.insertQ41(currPesq,respostaq41,sqLiteDatabase);
+                    dbHelper.insertQ42(currPesq,respostaq42,sqLiteDatabase);
+                    dbHelper.insertQ5 (currPesq,respostaq5 ,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq61,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq62,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq63,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq64,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq65,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq66,sqLiteDatabase);
+                    dbHelper.insertQ6(currPesq,respostaq67,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq71,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq72,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq73,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq74,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq75,sqLiteDatabase);
+                    dbHelper.insertQ7(currPesq,respostaq76,sqLiteDatabase);
+                    dbHelper.insertQ8(currPesq,respostaq8,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq81,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq82,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq83,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq84,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq85,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq86,sqLiteDatabase);
+                    dbHelper.insertQ8a(currPesq,respostaq87,sqLiteDatabase);
+                    dbHelper.insertQ9(currPesq,respostaq9,sqLiteDatabase);
+                    dbHelper.insertQ10(currPesq,respostaq10,sqLiteDatabase);
+                    dbHelper.insertQ11(currPesq,respostaq11,sqLiteDatabase);
+                    dbHelper.insertQ12(currPesq,respostaq12,sqLiteDatabase);
+                    dbHelper.insertQ13(currPesq,respostaq13,sqLiteDatabase);
+                    dbHelper.insertQ14(currPesq,respostaq14,sqLiteDatabase);
+                    dbHelper.insertQ15(currPesq,respostaq15,sqLiteDatabase);
+                    dbHelper.insertQ16(currPesq,respostaq16,sqLiteDatabase);
+                    dbHelper.insertQ17(currPesq,respostaq17,sqLiteDatabase);
+                    dbHelper.insertQ18(currPesq,respostaq18,sqLiteDatabase);
+                    dbHelper.insertQ19(currPesq,respostaq19,sqLiteDatabase);
+                    dbHelper.insertQ20(currPesq,respostaq20,sqLiteDatabase);
+                    dbHelper.insertQ21(currPesq,respostaq21,sqLiteDatabase);
+                    dbHelper.insertQ22(currPesq,respostaq22,sqLiteDatabase);
+                    dbHelper.insertQ23(currPesq,respostaq23,sqLiteDatabase);
+                    dbHelper.insertQ24(currPesq,respostaq24,sqLiteDatabase);
+                    dbHelper.insertQ25(currPesq,respostaq25,sqLiteDatabase);
+                    dbHelper.insertQ26(currPesq,respostaq26,sqLiteDatabase);
+                    dbHelper.insertQ27(currPesq,respostaq27,sqLiteDatabase);
+
+                    //endregion
+
                     Toast.makeText(MainActivity.this,
                             "Pesquisa " + currPesq + " salva com sucesso! Te amo!", Toast.LENGTH_SHORT).show();
 
@@ -1004,7 +901,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("Application Control", "New survey code: " + currPesq.toString());
                     pesq.setText("Pesquisa: " + currPesq.toString());
 
-                    //Clear Survey
+                    //region Clear Survey
                     q1.clearCheck();
                     q2.setText("");
                     q31.setText("");
@@ -1053,7 +950,55 @@ public class MainActivity extends AppCompatActivity {
                     q25.clearCheck();
                     q26.clearCheck();
                     q27.clearCheck();
-
+                    respostaq1 = "";
+                    respostaq2 = "";
+                    respostaq31 = "";
+                    respostaq32 = "";
+                    respostaq33 = "";
+                    respostaq41 = "";
+                    respostaq42 = "";
+                    respostaq5 = "";
+                    respostaq61 = "";
+                    respostaq62 = "";
+                    respostaq63 = "";
+                    respostaq64 = "";
+                    respostaq65 = "";
+                    respostaq66 = "";
+                    respostaq67 = "";
+                    respostaq71 = "";
+                    respostaq72 = "";
+                    respostaq73 = "";
+                    respostaq74 = "";
+                    respostaq75 = "";
+                    respostaq76 = "";
+                    respostaq8 = "";
+                    respostaq81 = "";
+                    respostaq82 = "";
+                    respostaq83 = "";
+                    respostaq84 = "";
+                    respostaq85 = "";
+                    respostaq86 = "";
+                    respostaq87 = "";
+                    respostaq9 = "";
+                    respostaq10 = "";
+                    respostaq11 = "";
+                    respostaq12 = "";
+                    respostaq13 = "";
+                    respostaq14 = "";
+                    respostaq15 = "";
+                    respostaq16 = "";
+                    respostaq17 = "";
+                    respostaq18 = "";
+                    respostaq19 = "";
+                    respostaq20 = "";
+                    respostaq21 = "";
+                    respostaq22 = "";
+                    respostaq23 = "";
+                    respostaq24 = "";
+                    respostaq25 = "";
+                    respostaq26 = "";
+                    respostaq27 = "";
+                    //endregion
 
                     //Retorna ao topo
                     scrollView.post(new Runnable() {
@@ -1061,10 +1006,18 @@ public class MainActivity extends AppCompatActivity {
                             scrollView.scrollTo(5, 0);
                         }
                     });
+
+                    //Export .CSV
+                    try {
+                        SqliteExporter.export(sqLiteDatabase);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
                 } else {
 
                     Toast.makeText(MainActivity.this,
-                            "A(s) pergunta(s) " + naoResp.toString() + " não foi(ram) respondida(s)!", Toast.LENGTH_LONG).show();
+                            "A(s) pergunta(s) " + naoResp.toString().replace("[", "").replace("]", "") + " não foi(ram) respondida(s)!", Toast.LENGTH_LONG).show();
 
                     naoResp.clear();
                 }
@@ -1084,4 +1037,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("Permition control","Permission is granted");
+                return true;
+            } else {
+
+                Log.v("Permition control","Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v("Permition control","Permission is granted");
+            return true;
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            Log.v("Permition control",permissions[0]+ " was "+grantResults[0]);
+            //resume tasks needing this permission
+        }
+    }
 }
