@@ -31,6 +31,18 @@ public class DbHelper extends SQLiteOpenHelper{
                     ContractQuestions.PESQ.DATA + " )" +
                     "VALUES (" + 1 + "," + System.currentTimeMillis() + ");";
 
+    public static final String CREATE_TABLE_Q01 =
+            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q01.TABLE_NAME +
+                    "( " +
+                    ContractQuestions.Q01.CODIGO + " integer PRIMARY KEY," +
+                    ContractQuestions.Q01.RESPOSTA + " text);";
+
+    public static final String CREATE_TABLE_Q02 =
+            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q02.TABLE_NAME +
+                    "( " +
+                    ContractQuestions.Q02.CODIGO + " integer PRIMARY KEY," +
+                    ContractQuestions.Q02.RESPOSTA + " text);";
+
     public static final String CREATE_TABLE_Q1 =
             "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q1.TABLE_NAME +
                     "( " +
@@ -96,12 +108,6 @@ public class DbHelper extends SQLiteOpenHelper{
                     "( " +
                     ContractQuestions.Q8.CODIGO + " integer PRIMARY KEY," +
                     ContractQuestions.Q8.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q8a =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q8a.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q8a.CODIGO + " integer," +
-                    ContractQuestions.Q8a.RESPOSTA + " text);";
 
     public static final String CREATE_TABLE_Q9 =
             "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q9.TABLE_NAME +
@@ -169,55 +175,6 @@ public class DbHelper extends SQLiteOpenHelper{
                     ContractQuestions.Q19.CODIGO + " integer PRIMARY KEY," +
                     ContractQuestions.Q19.RESPOSTA + " text);";
 
-    public static final String CREATE_TABLE_Q20 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q20.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q20.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q20.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q21 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q21.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q21.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q21.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q22 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q22.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q22.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q22.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q23 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q23.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q23.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q23.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q24 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q24.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q24.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q24.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q25 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q25.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q25.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q25.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q26 =
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q26.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q26.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q26.RESPOSTA + " text);";
-
-    public static final String CREATE_TABLE_Q27=
-            "CREATE TABLE IF NOT EXISTS " + ContractQuestions.Q27.TABLE_NAME +
-                    "( " +
-                    ContractQuestions.Q27.CODIGO + " integer PRIMARY KEY," +
-                    ContractQuestions.Q27.RESPOSTA + " text);";
-
-
     //endregion
 
     public DbHelper (Context context)
@@ -234,6 +191,11 @@ public class DbHelper extends SQLiteOpenHelper{
         sqLiteDatabase.execSQL(PINSERT_PESQ);
         Log.d("Database operations","Table PESQ first insert");
 
+
+        sqLiteDatabase.execSQL(CREATE_TABLE_Q01);
+        Log.d("Database operations","Table Q01 created successfully");
+        sqLiteDatabase.execSQL(CREATE_TABLE_Q02);
+        Log.d("Database operations","Table Q02 created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q1);
         Log.d("Database operations","Table Q1 created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q2);
@@ -256,8 +218,6 @@ public class DbHelper extends SQLiteOpenHelper{
         Log.d("Database operations","Table Q7 created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q8);
         Log.d("Database operations","Table Q8 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q8a);
-        Log.d("Database operations","Table Q8a created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q9);
         Log.d("Database operations","Table Q9 created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q10);
@@ -280,23 +240,6 @@ public class DbHelper extends SQLiteOpenHelper{
         Log.d("Database operations","Table Q18 created successfully");
         sqLiteDatabase.execSQL(CREATE_TABLE_Q19);
         Log.d("Database operations","Table Q19 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q20);
-        Log.d("Database operations","Table Q20 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q21);
-        Log.d("Database operations","Table Q21 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q22);
-        Log.d("Database operations","Table Q22 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q23);
-        Log.d("Database operations","Table Q23 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q24);
-        Log.d("Database operations","Table Q24 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q25);
-        Log.d("Database operations","Table Q25 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q26);
-        Log.d("Database operations","Table Q26 created successfully");
-        sqLiteDatabase.execSQL(CREATE_TABLE_Q27);
-        Log.d("Database operations","Table Q27 created successfully");
-
     }
 
     @Override
@@ -306,6 +249,29 @@ public class DbHelper extends SQLiteOpenHelper{
     }
 
     //region METHODS - INSERTS
+
+    public void insertQ01 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ContractQuestions.Q01.CODIGO, codigo);
+        contentValues.put(ContractQuestions.Q01.RESPOSTA, resposta);
+
+        long l = sqLiteDatabase.insert(ContractQuestions.Q01.TABLE_NAME, null,contentValues);
+        Log.d("Database operations","One row inserted in Q01 table");
+    }
+
+    public void insertQ02 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(ContractQuestions.Q02.CODIGO, codigo);
+        contentValues.put(ContractQuestions.Q02.RESPOSTA, resposta);
+
+        long l = sqLiteDatabase.insert(ContractQuestions.Q02.TABLE_NAME, null,contentValues);
+        Log.d("Database operations","One row inserted in Q02 table");
+    }
+
 
     public void insertQ1 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
 
@@ -428,17 +394,6 @@ public class DbHelper extends SQLiteOpenHelper{
         Log.d("Database operations","One row inserted in Q8 table");
     }
 
-    public void insertQ8a (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q8a.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q8a.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q8a.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q8a table");
-    }
-
     public void insertQ9 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
 
         ContentValues contentValues = new ContentValues();
@@ -558,94 +513,6 @@ public class DbHelper extends SQLiteOpenHelper{
 
         long l = sqLiteDatabase.insert(ContractQuestions.Q19.TABLE_NAME, null,contentValues);
         Log.d("Database operations","One row inserted in Q19 table");
-    }
-
-    public void insertQ20 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q20.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q20.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q20.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q20 table");
-    }
-
-    public void insertQ21 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q21.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q21.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q21.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q21 table");
-    }
-
-    public void insertQ22 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q22.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q22.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q22.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q22 table");
-    }
-
-    public void insertQ23 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q23.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q23.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q23.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q23 table");
-    }
-
-    public void insertQ24 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q24.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q24.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q24.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q24 table");
-    }
-
-    public void insertQ25 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q25.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q25.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q25.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q25 table");
-    }
-
-    public void insertQ26 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q26.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q26.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q26.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q26 table");
-    }
-
-    public void insertQ27 (Integer codigo, String resposta, SQLiteDatabase sqLiteDatabase){
-
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(ContractQuestions.Q27.CODIGO, codigo);
-        contentValues.put(ContractQuestions.Q27.RESPOSTA, resposta);
-
-        long l = sqLiteDatabase.insert(ContractQuestions.Q27.TABLE_NAME, null,contentValues);
-        Log.d("Database operations","One row inserted in Q27 table");
     }
 
     public void insertPESQ (Integer codigo, SQLiteDatabase sqLiteDatabase){

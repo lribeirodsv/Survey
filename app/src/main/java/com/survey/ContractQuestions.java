@@ -15,6 +15,20 @@ public class ContractQuestions {
         public static final String DATA = "DTPESQ";
     }
 
+    public static class Q01
+    {
+        public static final String TABLE_NAME = "TABQ01";
+        public static final String CODIGO = "CDPESQ";
+        public static final String RESPOSTA = "DSRESP";
+    }
+
+    public static class Q02
+    {
+        public static final String TABLE_NAME = "TABQ02";
+        public static final String CODIGO = "CDPESQ";
+        public static final String RESPOSTA = "DSRESP";
+    }
+
     public static class Q1
     {
         public static final String TABLE_NAME = "TABQ1";
@@ -175,62 +189,5 @@ public class ContractQuestions {
         public static final String CODIGO = "CDPESQ";
         public static final String RESPOSTA = "DSRESP";
     }
-
-    public static class Q20
-    {
-        public static final String TABLE_NAME = "TABQ20";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q21
-    {
-        public static final String TABLE_NAME = "TABQ21";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q22
-    {
-        public static final String TABLE_NAME = "TABQ22";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q23
-    {
-        public static final String TABLE_NAME = "TABQ23";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q24
-    {
-        public static final String TABLE_NAME = "TABQ24";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q25
-    {
-        public static final String TABLE_NAME = "TABQ25";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q26
-    {
-        public static final String TABLE_NAME = "TABQ26";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
-    public static class Q27
-    {
-        public static final String TABLE_NAME = "TABQ27";
-        public static final String CODIGO = "CDPESQ";
-        public static final String RESPOSTA = "DSRESP";
-    }
-
 }
 

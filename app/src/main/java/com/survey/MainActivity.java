@@ -32,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
     private Integer    currPesq;
     private Integer    status;
-    private boolean    statusbool;
     private ArrayList<String> naoResp;
     private TextView   pesq;
     private ScrollView scrollView;
+
+    private RadioGroup q01;
+    private RadioGroup q02;
     private RadioGroup q1;
     private EditText   q2;
     private EditText   q31;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup q41;
     private RadioGroup q42;
     private RadioGroup q5;
+    private RadioGroup q6;
+    private RadioGroup q7;
     private RadioGroup q8;
     private RadioGroup q9;
     private RadioGroup q10;
@@ -56,92 +60,47 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup q17;
     private RadioGroup q18;
     private RadioGroup q19;
-    private RadioGroup q20;
-    private RadioGroup q21;
-    private RadioGroup q22;
-    private RadioGroup q23;
-    private RadioGroup q24;
-    private RadioGroup q25;
-    private RadioGroup q26;
-    private RadioGroup q27;
-
-    //q6
-    private CheckBox   cb1;
-    private CheckBox   cb2;
-    private CheckBox   cb3;
-    private CheckBox   cb4;
-    private CheckBox   cb5;
-    private CheckBox   cb6;
-    private CheckBox   cb7;
 
     //q7
-    private CheckBox   cb8;
-    private CheckBox   cb9;
-    private CheckBox   cb10;
-    private CheckBox   cb11;
-    private CheckBox   cb12;
-    private CheckBox   cb13;
-
-    //q8.1
-    private CheckBox   cb14;
-    private CheckBox   cb15;
-    private CheckBox   cb16;
-    private CheckBox   cb17;
-    private CheckBox   cb18;
-    private CheckBox   cb19;
-    private CheckBox   cb20;
+    private CheckBox   cb71;
+    private CheckBox   cb72;
+    private CheckBox   cb73;
+    private CheckBox   cb74;
+    private CheckBox   cb75;
+    private CheckBox   cb76;
 
     private RadioButton radioButton;
     private CheckBox checkBox;
     private Button finalizar;
-    private String respostaq1;
-    private String respostaq2;
-    private String respostaq31;
-    private String respostaq32;
-    private String respostaq33;
-    private String respostaq41;
-    private String respostaq42;
-    private String respostaq5;
-    private String respostaq61;
-    private String respostaq62;
-    private String respostaq63;
-    private String respostaq64;
-    private String respostaq65;
-    private String respostaq66;
-    private String respostaq67;
-    private String respostaq71;
-    private String respostaq72;
-    private String respostaq73;
-    private String respostaq74;
-    private String respostaq75;
-    private String respostaq76;
-    private String respostaq8;
-    private String respostaq81;
-    private String respostaq82;
-    private String respostaq83;
-    private String respostaq84;
-    private String respostaq85;
-    private String respostaq86;
-    private String respostaq87;
-    private String respostaq9;
-    private String respostaq10;
-    private String respostaq11;
-    private String respostaq12;
-    private String respostaq13;
-    private String respostaq14;
-    private String respostaq15;
-    private String respostaq16;
-    private String respostaq17;
-    private String respostaq18;
-    private String respostaq19;
-    private String respostaq20;
-    private String respostaq21;
-    private String respostaq22;
-    private String respostaq23;
-    private String respostaq24;
-    private String respostaq25;
-    private String respostaq26;
-    private String respostaq27;
+    private String respostaq01 = "";
+    private String respostaq02 = "";
+    private String respostaq1 = "";
+    private String respostaq2 = "";
+    private String respostaq31 = "";
+    private String respostaq32 = "";
+    private String respostaq33 = "";
+    private String respostaq41 = "";
+    private String respostaq42 = "";
+    private String respostaq5 = "";
+    private String respostaq6 = "";
+    private String respostaq71 = "";
+    private String respostaq72 = "";
+    private String respostaq73 = "";
+    private String respostaq74 = "";
+    private String respostaq75 = "";
+    private String respostaq76 = "";
+    private String respostaq8 = "";
+    private String respostaq9 = "";
+    private String respostaq10 = "";
+    private String respostaq11 = "";
+    private String respostaq12 = "";
+    private String respostaq13 = "";
+    private String respostaq14 = "";
+    private String respostaq15 = "";
+    private String respostaq16 = "";
+    private String respostaq17 = "";
+    private String respostaq18 = "";
+    private String respostaq19 = "";
 
     //endregion
 
@@ -178,55 +137,36 @@ public class MainActivity extends AppCompatActivity {
     private void addListenerOnButton(final DbHelper dbHelper, final SQLiteDatabase sqLiteDatabase) {
 
         //region variables initialization
-        q1  = (RadioGroup) findViewById(R.id.q1);
-        q2  = (EditText)   findViewById(R.id.e1);
-        q31 = (EditText)   findViewById(R.id.e2);
-        q32 = (EditText)   findViewById(R.id.e3);
-        q33 = (RadioGroup) findViewById(R.id.q33);
-        q41 = (RadioGroup) findViewById(R.id.q41);
-        q42 = (RadioGroup) findViewById(R.id.q42);
-        q5  = (RadioGroup) findViewById(R.id.q5);
-        q8  = (RadioGroup) findViewById(R.id.q8);
-        q9  = (RadioGroup) findViewById(R.id.q9);
-        q10  = (RadioGroup) findViewById(R.id.q10);
-        q11  = (RadioGroup) findViewById(R.id.q11);
-        q12  = (RadioGroup) findViewById(R.id.q12);
-        q13  = (RadioGroup) findViewById(R.id.q13);
-        q14  = (RadioGroup) findViewById(R.id.q14);
-        q15  = (RadioGroup) findViewById(R.id.q15);
-        q16  = (RadioGroup) findViewById(R.id.q16);
-        q17  = (RadioGroup) findViewById(R.id.q17);
-        q18  = (RadioGroup) findViewById(R.id.q18);
-        q19  = (RadioGroup) findViewById(R.id.q19);
-        q20  = (RadioGroup) findViewById(R.id.q20);
-        q21  = (RadioGroup) findViewById(R.id.q21);
-        q22  = (RadioGroup) findViewById(R.id.q22);
-        q23  = (RadioGroup) findViewById(R.id.q23);
-        q24  = (RadioGroup) findViewById(R.id.q24);
-        q25  = (RadioGroup) findViewById(R.id.q25);
-        q26  = (RadioGroup) findViewById(R.id.q26);
-        q27  = (RadioGroup) findViewById(R.id.q27);
+        q01 = (RadioGroup) findViewById(R.id.r01);
+        q02 = (RadioGroup) findViewById(R.id.r02);
+        q1  = (RadioGroup) findViewById(R.id.r1);
+        q2  = (EditText)   findViewById(R.id.e2);
+        q31 = (EditText)   findViewById(R.id.e3_1);
+        q32 = (EditText)   findViewById(R.id.e3_2);
+        q33 = (RadioGroup) findViewById(R.id.r3_3);
+        q41 = (RadioGroup) findViewById(R.id.r4_1);
+        q42 = (RadioGroup) findViewById(R.id.r4_2);
+        q5  = (RadioGroup) findViewById(R.id.r5);
+        q6  = (RadioGroup) findViewById(R.id.r6);
+        q8  = (RadioGroup) findViewById(R.id.r8);
+        q9  = (RadioGroup) findViewById(R.id.r9);
+        q10  = (RadioGroup) findViewById(R.id.r10);
+        q11  = (RadioGroup) findViewById(R.id.r11);
+        q12  = (RadioGroup) findViewById(R.id.r12);
+        q13  = (RadioGroup) findViewById(R.id.r13);
+        q14  = (RadioGroup) findViewById(R.id.r14);
+        q15  = (RadioGroup) findViewById(R.id.r15);
+        q16  = (RadioGroup) findViewById(R.id.r16);
+        q17  = (RadioGroup) findViewById(R.id.r17);
+        q18  = (RadioGroup) findViewById(R.id.r18);
+        q19  = (RadioGroup) findViewById(R.id.r19);
 
-        cb1 = (CheckBox)   findViewById(R.id.cb1);
-        cb2 = (CheckBox)   findViewById(R.id.cb2);
-        cb3 = (CheckBox)   findViewById(R.id.cb3);
-        cb4 = (CheckBox)   findViewById(R.id.cb4);
-        cb5 = (CheckBox)   findViewById(R.id.cb5);
-        cb6 = (CheckBox)   findViewById(R.id.cb6);
-        cb7 = (CheckBox)   findViewById(R.id.cb7);
-        cb8 = (CheckBox)   findViewById(R.id.cb8);
-        cb9 = (CheckBox)   findViewById(R.id.cb9);
-        cb10 = (CheckBox)   findViewById(R.id.cb10);
-        cb11 = (CheckBox)   findViewById(R.id.cb11);
-        cb12 = (CheckBox)   findViewById(R.id.cb12);
-        cb13 = (CheckBox)   findViewById(R.id.cb13);
-        cb14 = (CheckBox)   findViewById(R.id.cb14);
-        cb15 = (CheckBox)   findViewById(R.id.cb15);
-        cb16 = (CheckBox)   findViewById(R.id.cb16);
-        cb17 = (CheckBox)   findViewById(R.id.cb17);
-        cb18 = (CheckBox)   findViewById(R.id.cb18);
-        cb19 = (CheckBox)   findViewById(R.id.cb19);
-        cb20 = (CheckBox)   findViewById(R.id.cb20);
+        cb71 = (CheckBox)   findViewById(R.id.cb7_1);
+        cb72 = (CheckBox)   findViewById(R.id.cb7_2);
+        cb73 = (CheckBox)   findViewById(R.id.cb7_3);
+        cb74 = (CheckBox)   findViewById(R.id.cb7_4);
+        cb75 = (CheckBox)   findViewById(R.id.cb7_5);
+        cb76 = (CheckBox)   findViewById(R.id.cb7_6);
 
         //endregion
 
@@ -238,6 +178,34 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Identificação
+                //region q01
+
+                status = q01.getCheckedRadioButtonId();
+
+                if(status != -1) {
+
+                    radioButton = (RadioButton) findViewById(status);
+                    respostaq01 = radioButton.getText().toString();
+
+                } else
+                    naoResp.add("01");
+
+                //endregion
+
+                //region q02
+
+                status = q02.getCheckedRadioButtonId();
+
+                if(status != -1) {
+
+                    radioButton = (RadioButton) findViewById(status);
+                    respostaq02 = radioButton.getText().toString();
+
+                } else
+                    naoResp.add("02");
+
+                //endregion
+
                 //region q1
 
                 status = q1.getCheckedRadioButtonId();
@@ -352,76 +320,21 @@ public class MainActivity extends AppCompatActivity {
                 //endregion
 
                 //region q6
-                status = cb1.getId();
-                checkBox = (CheckBox) findViewById(status);
 
-                if(checkBox.isChecked()){
+                status = q6.getCheckedRadioButtonId();
 
-                    respostaq61 = checkBox.getText().toString();
+                if(status != -1) {
 
-                }
+                    radioButton = (RadioButton) findViewById(status);
+                    respostaq6 = radioButton.getText().toString();
 
-                status = cb2.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq62 = checkBox.getText().toString();
-
-                }
-
-                status = cb3.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq63 = checkBox.getText().toString();
-
-                }
-
-                status = cb4.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq64 = checkBox.getText().toString();
-
-                }
-
-                status = cb5.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq65 = checkBox.getText().toString();
-
-                }
-
-                status = cb6.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq66 = checkBox.getText().toString();
-
-                }
-
-                status = cb7.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq67 = checkBox.getText().toString();
-
-                }
-
-                if(!cb1.isChecked() && !cb2.isChecked() && !cb3.isChecked() && !cb4.isChecked() && !cb5.isChecked() && !cb6.isChecked() && !cb7.isChecked())
+                } else
                     naoResp.add("6");
 
                 //endregion
 
                 //region q7
-                status = cb8.getId();
+                status = cb71.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -430,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                status = cb9.getId();
+                status = cb72.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -439,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                status = cb10.getId();
+                status = cb73.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -448,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                status = cb11.getId();
+                status = cb74.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -457,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                status = cb12.getId();
+                status = cb75.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -466,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                status = cb13.getId();
+                status = cb76.getId();
                 checkBox = (CheckBox) findViewById(status);
 
                 if(checkBox.isChecked()){
@@ -475,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                if(!cb8.isChecked() && !cb9.isChecked() && !cb10.isChecked() && !cb11.isChecked() && !cb12.isChecked() && !cb13.isChecked())
+                if(!cb71.isChecked() && !cb72.isChecked() && !cb73.isChecked() && !cb74.isChecked() && !cb75.isChecked() && !cb76.isChecked())
                     naoResp.add("7");
                 //endregion
 
@@ -489,79 +402,6 @@ public class MainActivity extends AppCompatActivity {
 
                 } else
                     naoResp.add("8");
-                //endregion
-
-                //region q8.1
-                status = cb14.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq81 = checkBox.getText().toString();
-
-                }
-
-                status = cb15.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq82 = checkBox.getText().toString();
-
-                }
-
-                status = cb16.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq83 = checkBox.getText().toString();
-
-                }
-
-                status = cb17.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq84 = checkBox.getText().toString();
-
-                }
-
-                status = cb18.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq85 = checkBox.getText().toString();
-
-                }
-
-                status = cb19.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq86 = checkBox.getText().toString();
-
-                }
-
-                status = cb20.getId();
-                checkBox = (CheckBox) findViewById(status);
-
-                if(checkBox.isChecked()){
-
-                    respostaq87 = checkBox.getText().toString();
-
-                }
-
-                RadioButton rb1;
-                RadioButton rb2;
-                rb1 = (RadioButton) findViewById(R.id.r19);
-                rb2 = (RadioButton) findViewById(R.id.r20);
-
-                if(!cb14.isChecked() && !cb15.isChecked() && !cb16.isChecked() && !cb17.isChecked() && !cb18.isChecked() && !cb19.isChecked() && !cb20.isChecked() && (rb1.isChecked() || rb2.isChecked()))
-                    naoResp.add("8a");
                 //endregion
 
                 //Práticas relacionadas a logistica revertsa e destinacao de medicamentos
@@ -720,169 +560,64 @@ public class MainActivity extends AppCompatActivity {
 
                 //endregion
 
-                //region q20
-
-                status = q20.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq20 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("20");
-
-                //endregion
-
-                //region q21
-
-                status = q21.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq21 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("21");
-
-                //endregion
-
-                //region q22
-
-                status = q22.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq22 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("22");
-
-                //endregion
-
-                //region q23
-
-                status = q23.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq23 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("23");
-
-                //endregion
-
-                //region q24
-
-                status = q24.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq24 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("24");
-
-                //endregion
-
-                //region q25
-
-                status = q25.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq25 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("25");
-
-                //endregion
-
-                //region q26
-
-                status = q26.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq26 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("26");
-
-                //endregion
-
-                //region q27
-
-                status = q27.getCheckedRadioButtonId();
-
-                if(status != -1) {
-
-                    radioButton = (RadioButton) findViewById(status);
-                    respostaq27 = radioButton.getText().toString();
-
-                } else
-                    naoResp.add("27");
-
-                //endregion
-
                 if(naoResp.isEmpty()) {
 
                     //region inserts
-                    dbHelper.insertQ1 (currPesq,respostaq1 ,sqLiteDatabase);
-                    dbHelper.insertQ2 (currPesq,respostaq2 ,sqLiteDatabase);
-                    dbHelper.insertQ31(currPesq,respostaq31,sqLiteDatabase);
-                    dbHelper.insertQ32(currPesq,respostaq32,sqLiteDatabase);
-                    dbHelper.insertQ33(currPesq,respostaq33,sqLiteDatabase);
-                    dbHelper.insertQ41(currPesq,respostaq41,sqLiteDatabase);
-                    dbHelper.insertQ42(currPesq,respostaq42,sqLiteDatabase);
-                    dbHelper.insertQ5 (currPesq,respostaq5 ,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq61,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq62,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq63,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq64,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq65,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq66,sqLiteDatabase);
-                    dbHelper.insertQ6(currPesq,respostaq67,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq71,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq72,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq73,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq74,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq75,sqLiteDatabase);
-                    dbHelper.insertQ7(currPesq,respostaq76,sqLiteDatabase);
-                    dbHelper.insertQ8(currPesq,respostaq8,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq81,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq82,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq83,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq84,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq85,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq86,sqLiteDatabase);
-                    dbHelper.insertQ8a(currPesq,respostaq87,sqLiteDatabase);
-                    dbHelper.insertQ9(currPesq,respostaq9,sqLiteDatabase);
-                    dbHelper.insertQ10(currPesq,respostaq10,sqLiteDatabase);
-                    dbHelper.insertQ11(currPesq,respostaq11,sqLiteDatabase);
-                    dbHelper.insertQ12(currPesq,respostaq12,sqLiteDatabase);
-                    dbHelper.insertQ13(currPesq,respostaq13,sqLiteDatabase);
-                    dbHelper.insertQ14(currPesq,respostaq14,sqLiteDatabase);
-                    dbHelper.insertQ15(currPesq,respostaq15,sqLiteDatabase);
-                    dbHelper.insertQ16(currPesq,respostaq16,sqLiteDatabase);
-                    dbHelper.insertQ17(currPesq,respostaq17,sqLiteDatabase);
-                    dbHelper.insertQ18(currPesq,respostaq18,sqLiteDatabase);
-                    dbHelper.insertQ19(currPesq,respostaq19,sqLiteDatabase);
-                    dbHelper.insertQ20(currPesq,respostaq20,sqLiteDatabase);
-                    dbHelper.insertQ21(currPesq,respostaq21,sqLiteDatabase);
-                    dbHelper.insertQ22(currPesq,respostaq22,sqLiteDatabase);
-                    dbHelper.insertQ23(currPesq,respostaq23,sqLiteDatabase);
-                    dbHelper.insertQ24(currPesq,respostaq24,sqLiteDatabase);
-                    dbHelper.insertQ25(currPesq,respostaq25,sqLiteDatabase);
-                    dbHelper.insertQ26(currPesq,respostaq26,sqLiteDatabase);
-                    dbHelper.insertQ27(currPesq,respostaq27,sqLiteDatabase);
+                    dbHelper.insertQ01 (currPesq,respostaq01 ,sqLiteDatabase);
+                    dbHelper.insertQ02 (currPesq,respostaq02 ,sqLiteDatabase);
+                    dbHelper.insertQ1  (currPesq,respostaq1  ,sqLiteDatabase);
+                    dbHelper.insertQ2  (currPesq,respostaq2  ,sqLiteDatabase);
+
+                    if (!respostaq31.isEmpty()) {
+                        dbHelper.insertQ31(currPesq, respostaq31, sqLiteDatabase);
+                    }
+                    if (!respostaq32.isEmpty()) {
+                        dbHelper.insertQ32(currPesq, respostaq32, sqLiteDatabase);
+                    }
+                    if (!respostaq33.isEmpty()) {
+                        dbHelper.insertQ33(currPesq, respostaq33, sqLiteDatabase);
+                    }
+                    if (!respostaq41.isEmpty()) {
+                        dbHelper.insertQ41(currPesq, respostaq41, sqLiteDatabase);
+                    }
+                    if (!respostaq42.isEmpty()) {
+                        dbHelper.insertQ42 (currPesq,respostaq42 ,sqLiteDatabase);
+                    }
+
+                    dbHelper.insertQ5  (currPesq,respostaq5  ,sqLiteDatabase);
+                    dbHelper.insertQ6  (currPesq,respostaq6  ,sqLiteDatabase);
+
+                    if (!respostaq71.isEmpty()){
+                        dbHelper.insertQ7  (currPesq,respostaq71 ,sqLiteDatabase);
+                    }
+                    if (!respostaq72.isEmpty()) {
+                        dbHelper.insertQ7(currPesq, respostaq72, sqLiteDatabase);
+                    }
+                    if (!respostaq73.isEmpty()) {
+                        dbHelper.insertQ7(currPesq, respostaq73, sqLiteDatabase);
+                    }
+                    if (!respostaq74.isEmpty()) {
+                        dbHelper.insertQ7(currPesq, respostaq74, sqLiteDatabase);
+                    }
+                    if (!respostaq75.isEmpty()) {
+                        dbHelper.insertQ7(currPesq, respostaq75, sqLiteDatabase);
+                    }
+                    if (!respostaq76.isEmpty()){
+                        dbHelper.insertQ7  (currPesq,respostaq76 ,sqLiteDatabase);
+                    }
+
+                    dbHelper.insertQ8  (currPesq,respostaq8  ,sqLiteDatabase);
+                    dbHelper.insertQ9  (currPesq,respostaq9  ,sqLiteDatabase);
+                    dbHelper.insertQ10 (currPesq,respostaq10 ,sqLiteDatabase);
+                    dbHelper.insertQ11 (currPesq,respostaq11 ,sqLiteDatabase);
+                    dbHelper.insertQ12 (currPesq,respostaq12 ,sqLiteDatabase);
+                    dbHelper.insertQ13 (currPesq,respostaq13 ,sqLiteDatabase);
+                    dbHelper.insertQ14 (currPesq,respostaq14 ,sqLiteDatabase);
+                    dbHelper.insertQ15 (currPesq,respostaq15 ,sqLiteDatabase);
+                    dbHelper.insertQ16 (currPesq,respostaq16 ,sqLiteDatabase);
+                    dbHelper.insertQ17 (currPesq,respostaq17 ,sqLiteDatabase);
+                    dbHelper.insertQ18 (currPesq,respostaq18 ,sqLiteDatabase);
+                    dbHelper.insertQ19 (currPesq,respostaq19 ,sqLiteDatabase);
 
                     //endregion
 
@@ -902,6 +637,8 @@ public class MainActivity extends AppCompatActivity {
                     pesq.setText("Pesquisa: " + currPesq.toString());
 
                     //region Clear Survey
+                    q01.clearCheck();
+                    q02.clearCheck();
                     q1.clearCheck();
                     q2.setText("");
                     q31.setText("");
@@ -910,27 +647,14 @@ public class MainActivity extends AppCompatActivity {
                     q41.clearCheck();
                     q42.clearCheck();
                     q5.clearCheck();
-                    cb1.setChecked(false);
-                    cb2.setChecked(false);
-                    cb3.setChecked(false);
-                    cb4.setChecked(false);
-                    cb5.setChecked(false);
-                    cb6.setChecked(false);
-                    cb7.setChecked(false);
-                    cb8.setChecked(false);
-                    cb9.setChecked(false);
-                    cb10.setChecked(false);
-                    cb11.setChecked(false);
-                    cb12.setChecked(false);
-                    cb13.setChecked(false);
+                    q6.clearCheck();
+                    cb71.setChecked(false);
+                    cb72.setChecked(false);
+                    cb73.setChecked(false);
+                    cb74.setChecked(false);
+                    cb75.setChecked(false);
+                    cb76.setChecked(false);
                     q8.clearCheck();
-                    cb14.setChecked(false);
-                    cb15.setChecked(false);
-                    cb16.setChecked(false);
-                    cb17.setChecked(false);
-                    cb18.setChecked(false);
-                    cb19.setChecked(false);
-                    cb20.setChecked(false);
                     q9.clearCheck();
                     q10.clearCheck();
                     q11.clearCheck();
@@ -942,14 +666,8 @@ public class MainActivity extends AppCompatActivity {
                     q17.clearCheck();
                     q18.clearCheck();
                     q19.clearCheck();
-                    q20.clearCheck();
-                    q21.clearCheck();
-                    q22.clearCheck();
-                    q23.clearCheck();
-                    q24.clearCheck();
-                    q25.clearCheck();
-                    q26.clearCheck();
-                    q27.clearCheck();
+                    respostaq01 = "";
+                    respostaq02 = "";
                     respostaq1 = "";
                     respostaq2 = "";
                     respostaq31 = "";
@@ -958,13 +676,7 @@ public class MainActivity extends AppCompatActivity {
                     respostaq41 = "";
                     respostaq42 = "";
                     respostaq5 = "";
-                    respostaq61 = "";
-                    respostaq62 = "";
-                    respostaq63 = "";
-                    respostaq64 = "";
-                    respostaq65 = "";
-                    respostaq66 = "";
-                    respostaq67 = "";
+                    respostaq6 = "";
                     respostaq71 = "";
                     respostaq72 = "";
                     respostaq73 = "";
@@ -972,13 +684,6 @@ public class MainActivity extends AppCompatActivity {
                     respostaq75 = "";
                     respostaq76 = "";
                     respostaq8 = "";
-                    respostaq81 = "";
-                    respostaq82 = "";
-                    respostaq83 = "";
-                    respostaq84 = "";
-                    respostaq85 = "";
-                    respostaq86 = "";
-                    respostaq87 = "";
                     respostaq9 = "";
                     respostaq10 = "";
                     respostaq11 = "";
@@ -990,14 +695,6 @@ public class MainActivity extends AppCompatActivity {
                     respostaq17 = "";
                     respostaq18 = "";
                     respostaq19 = "";
-                    respostaq20 = "";
-                    respostaq21 = "";
-                    respostaq22 = "";
-                    respostaq23 = "";
-                    respostaq24 = "";
-                    respostaq25 = "";
-                    respostaq26 = "";
-                    respostaq27 = "";
                     //endregion
 
                     //Retorna ao topo
